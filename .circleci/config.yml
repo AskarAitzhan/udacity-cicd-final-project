@@ -134,10 +134,20 @@ jobs:
             echo "$CIRCLE_WORKFLOW_ID"
             aws cloudformation deploy \
               --template-file .circleci/files/backend.yml \
-              --tags project=udapeople \
-               --stack-name "udapeople-backend" \
-               --parameter-overrides ID="$CIRCLE_WORKFLOW_ID"
-              exit 1
+              --tags "project=udapeople" "stack-name=udapeople-backend-$CIRCLE_WORKFLOW_ID" \
+              --stack-name "udapeople-backend-$CIRCLE_WORKFLOW_ID" \
+              --parameter-overrides ID="$CIRCLE_WORKFLOW_ID"
+            aws cloudformation wait stack-create-complete --stack-name "udapeople-backend-$CIRCLE_WORKFLOW_ID"
+            export BACKEND_URL=$(aws ec2 describe-instances
+              --filters "Name=tag:project,Values=udapeople"
+              --query "Reservations[0].Instances[0].PublicDnsName"
+              --output text)
+            curl \
+              -H "Content-Type: text/plain" \
+              -H "token: b1cbdda4-c2dd-46e4-ae4e-91babf05fb00" \
+              --request PUT \
+              --data "$BACKEND_URL" \
+              https://api.memstash.io/values/backend-url
       - run:
           name: Ensure front-end infrastructure exist
           command: |
