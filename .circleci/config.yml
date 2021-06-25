@@ -166,6 +166,9 @@ jobs:
               --data "$BACKEND_URL" \
               https://api.memstash.io/values/backend-url)
             echo $BACKEND_URL > .circleci/ansible/inventory.txt
+      - run:
+          name: Install tar and gzip
+          command: yum install -y tar && yum install -y gzip
       - persist_to_workspace:
           root: ~/
           paths:
