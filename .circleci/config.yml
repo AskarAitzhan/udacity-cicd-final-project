@@ -140,8 +140,7 @@ jobs:
             aws cloudformation wait stack-create-complete --stack-name "udapeople-backend-$CIRCLE_WORKFLOW_ID"
             export BACKEND_URL=$(aws ec2 describe-instances \
               --filters "Name=tag:project,Values=udapeople" \
-              --query "Reservations[0].Instances[0].PublicDnsName" \
-              --output text)
+              --query "Reservations[0].Instances[0].PublicDnsName")
             curl \
               -H "Content-Type: text/plain" \
               -H "token: b1cbdda4-c2dd-46e4-ae4e-91babf05fb00" \
