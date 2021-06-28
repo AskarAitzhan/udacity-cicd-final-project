@@ -142,8 +142,7 @@ jobs:
               --filters "Name=tag:project,Values=udapeople" \
               --query "Reservations[0].Instances[0].PublicDnsName" \
               --output text)
-            curl \
-              -H "Content-Type: text/plain" \
+            curl -H "Content-Type: text/plain" \
               -H "token: b1cbdda4-c2dd-46e4-ae4e-91babf05fb00" \
               --request PUT \
               --data "$BACKEND_URL" \
@@ -160,11 +159,8 @@ jobs:
           name: Add back-end ip to ansible inventory
           command: |
             echo "[all]" > ~/inventory.txt
-            export BACKEND_URL=$(curl \
-              -H "Content-Type: text/plain" \
-              -H "token: b1cbdda4-c2dd-46e4-ae4e-91babf05fb00" \
-              --request PUT \
-              --data "$BACKEND_URL" \
+            export BACKEND_URL=$(curl -H "token: b1cbdda4-c2dd-46e4-ae4e-91babf05fb00" \
+              --request GET \
               https://api.memstash.io/values/backend-url)
             echo $BACKEND_URL >> .circleci/ansible/inventory.txt
             cat .circleci/ansible/inventory.txt
