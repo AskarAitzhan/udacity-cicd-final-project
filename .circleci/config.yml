@@ -139,7 +139,7 @@ jobs:
               --parameter-overrides ID="$CIRCLE_WORKFLOW_ID"
             aws cloudformation wait stack-create-complete --stack-name "udapeople-backend-$CIRCLE_WORKFLOW_ID"
             export BACKEND_URL=$(aws ec2 describe-instances \
-              --filters "Name=tag:project,Values=udapeople" \
+              --filters "Name=tag:stack-name,Values=udapeople-backend-$CIRCLE_WORKFLOW_ID" \
               --query "Reservations[0].Instances[0].PublicDnsName" \
               --output text)
             curl -H "Content-Type: text/plain" \
@@ -172,6 +172,12 @@ jobs:
           root: ~/
           paths:
             - project/.circleci/ansible/inventory.txt
+      - run:
+          name: Destroy infrastructure
+          command: |
+            aws cloudformation delete-stack --stack-name udapeople-backend-$CIRCLE_WORKFLOW_ID
+            aws cloudformation delete-stack --stack-name udapeople-frontend-$CIRCLE_WORKFLOW_ID
+          when: on_fail
       # Here's where you will add some code to rollback on failure
 
 #  configure-infrastructure:
