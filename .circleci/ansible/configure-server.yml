@@ -24,7 +24,7 @@
       wait_for_connection:
         connect_timeout: 10
         delay: 30
-        sleep: 1
+        sleep: 30
         timeout: 600
 
     - name: "install python for Ansible."
