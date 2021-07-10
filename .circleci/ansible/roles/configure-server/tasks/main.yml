@@ -37,7 +37,7 @@
 - name: "Create directory"
   become: yes
   file:
-    path: ~/project/backend
+    path: ~/project
     state: directory
 
 - name: "Copy backend code"
