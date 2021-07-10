@@ -30,6 +30,10 @@
     production: yes
     state: present
 
+- name: "install typescript interpreter."
+  become: yes
+  shell: pm2 install typescript
+
 - name: "Create directory"
   become: yes
   file:
@@ -40,8 +44,8 @@
   become: yes
   copy:
     src: ~/project/backend
-    dest: ~/project/backend
+    dest: ~/project
 
 - name: "run backend-end server."
   become: yes
-  shell: pm2 start ~/project/backend/src/main.ts
+  shell: pm2 start ~/project/backend/src/main.ts -i 3030
