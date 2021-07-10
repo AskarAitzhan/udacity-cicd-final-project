@@ -1,28 +1,28 @@
 ---
 
-- name: "update apt packages."
+- name: "update apt packages"
   become: yes
   apt:
     update_cache: yes
 
-- name: "upgrade packages."
+- name: "upgrade packages"
   become: yes
   apt:
     upgrade: yes
 
-- name: "remove dependencies that are no longer needed."
+- name: "remove dependencies that are no longer needed"
   become: yes
   apt:
     autoremove: yes
 
-- name: "install node."
+- name: "install node"
   become: yes
   apt:
     name: ['nodejs', 'npm']
     state: latest
     update_cache: yes
 
-- name: "install pm2."
+- name: "install pm2"
   become: yes
   npm:
     name: pm2
@@ -30,22 +30,22 @@
     production: yes
     state: present
 
-- name: "install typescript interpreter."
+- name: "install typescript interpreter"
   become: yes
   shell: pm2 install typescript
 
-- name: "Create directory"
+- name: "create directory"
   become: yes
   file:
     path: ~/project
     state: directory
 
-- name: "Copy backend code"
+- name: "copy backend code"
   become: yes
   copy:
     src: ~/project/backend
     dest: ~/project
 
-- name: "run backend-end server."
+- name: "run backend-end server"
   become: yes
   shell: pm2 start ~/project/backend/src/main.ts -i 3030
