@@ -30,6 +30,18 @@
     production: yes
     state: present
 
-#- name: "run backend-end server."
-#  become: yes
-#  shell: pm2 start ~/project/backend/src/main.ts
+- name: "Create directory"
+  become: yes
+  file:
+    path: ~/project/backend
+    state: directory
+
+- name: "Copy backend code"
+  become: yes
+  copy:
+    src: ~/project/backend
+    dest: ~/project/backend
+
+- name: "run backend-end server."
+  become: yes
+  shell: pm2 start ~/project/backend/src/main.ts
