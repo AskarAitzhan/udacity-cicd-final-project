@@ -48,4 +48,4 @@
 
 - name: "run backend-end server"
   become: yes
-  shell: pm2 start ~/project/backend/src/main.ts -i 3030
+  shell: pm2 start ~/project/backend/src/main.ts
