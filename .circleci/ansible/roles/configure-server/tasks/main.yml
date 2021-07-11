@@ -46,6 +46,3 @@
     src: ~/project/backend
     dest: ~/project
 
-- name: "run backend-end server"
-  become: yes
-  shell: pm2 start ~/project/backend/src/main.ts
