@@ -203,6 +203,7 @@ jobs:
       - run:
           name: Run migrations
           command: |
+            cd ~/project/backend
             npm install
             npm run migrations > ~/project/.circleci/migrations_output.txt
             exit 1
