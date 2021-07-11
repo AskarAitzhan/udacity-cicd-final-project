@@ -8,6 +8,7 @@ commands:
           name: Destroy environments
           when: on_fail
           command: |
+            pip install awscli
             aws cloudformation delete-stack --stack-name udapeople-backend-$CIRCLE_WORKFLOW_ID
             aws cloudformation delete-stack --stack-name udapeople-frontend-$CIRCLE_WORKFLOW_ID
 
@@ -178,9 +179,6 @@ jobs:
     docker:
       - image: python:3.7-alpine3.11
     steps:
-      - run:
-          name: Install AWS CLI
-          command: pip install awscli
       - checkout
       - add_ssh_keys:
           fingerprints:
