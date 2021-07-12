@@ -10,13 +10,13 @@ commands:
           command: |
             if ! $(command -v python >/dev/null)
             then
-              apt update
-              apt install python
+              sudo apt update
+              sudo apt install python
             fi
             if ! $(command -v pip >/dev/null)
             then
-              apt update
-              apt install python-pip
+              sudo apt update
+              sudo apt install python-pip
             fi
             if ! $(command -v aws >/dev/null)
             then
