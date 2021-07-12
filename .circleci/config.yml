@@ -32,7 +32,7 @@ commands:
     steps:
       - run:
           name: Revert migrations
-          # Add when this will run
+          when: on_fail
           command: |
             export SUCCESS=$(curl -H "token: b1cbdda4-c2dd-46e4-ae4e-91babf05fb00" \
               --request GET \
