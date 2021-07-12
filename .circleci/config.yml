@@ -231,6 +231,7 @@ jobs:
             else
               export MIGRATION_RESULT="0"
             fi
+            echo $MIGRATION_RESULT
             curl -H "Content-Type: text/plain" \
               -H "token: b1cbdda4-c2dd-46e4-ae4e-91babf05fb00" \
               --request PUT \
