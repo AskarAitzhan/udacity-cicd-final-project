@@ -213,13 +213,14 @@ jobs:
       - image: circleci/node
     steps:
       - checkout
+      - restore_cache:
+          keys: [backend-build]
       - run:
           name: Run migrations
           command: |
-            cd ~/project/backend
-            npm install
+            cd backend
+            npm i
             npm run migrations > ~/project/.circleci/migrations_output.txt
-            exit 1
       - run:
           name: Send migration results to memstash
           command: |
@@ -336,8 +337,8 @@ cleanup:
 workflows:
   default:
     jobs:
-#      - build-frontend
-#      - build-backend
+      - build-frontend
+      - build-backend
 #      - test-frontend:
 #          requires: [build-frontend]
 #      - test-backend:
