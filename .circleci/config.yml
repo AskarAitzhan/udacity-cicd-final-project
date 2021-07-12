@@ -224,7 +224,8 @@ jobs:
       - run:
           name: Send migration results to memstash
           command: |
-            if [ $(grep "has been executed successfully" ~/project/.circleci/migrations_output.txt) ] then
+            if (grep "has been executed successfully" ~/project/.circleci/migrations_output.txt)
+            then
               export MIGRATION_RESULT="1"
             else
               export MIGRATION_RESULT="0"
