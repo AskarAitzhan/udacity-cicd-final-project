@@ -33,16 +33,3 @@
 - name: "install typescript interpreter"
   become: yes
   shell: pm2 install typescript
-
-- name: "create directory"
-  become: yes
-  file:
-    path: ~/project
-    state: directory
-
-- name: "copy backend code"
-  become: yes
-  copy:
-    src: ~/project/backend
-    dest: ~/project
-

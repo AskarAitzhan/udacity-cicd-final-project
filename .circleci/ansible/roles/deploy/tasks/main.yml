@@ -1,0 +1,17 @@
+---
+
+- name: "create directory"
+  become: yes
+  file:
+    path: ~/project
+    state: directory
+
+- name: "copy backend code"
+  become: yes
+  copy:
+    src: ~/project/backend
+    dest: ~/project
+
+- name: "start backend job"
+  become: yes
+  shell: npm run start

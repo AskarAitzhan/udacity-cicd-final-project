@@ -11,8 +11,11 @@
 
   environment:
     ENVIRONMENT: production
+    VERSION: 1
+    TYPEORM_MIGRATIONS_DIR: "./src/migrations"
     TYPEORM_CONNECTION: "{{ ansible_env.TYPEORM_CONNECTION }}"
     TYPEORM_ENTITIES: "{{ ansible_env.TYPEORM_ENTITIES }}"
+    TYPEORM_MIGRATIONS: "{{ ansible_env.TYPEORM_MIGRATIONS }}"
     TYPEORM_HOST: "{{ ansible_env.TYPEORM_HOST }}"
     TYPEORM_PORT: "{{ ansible_env.TYPEORM_PORT }}"
     TYPEORM_USERNAME: "{{ ansible_env.TYPEORM_USERNAME }}"
