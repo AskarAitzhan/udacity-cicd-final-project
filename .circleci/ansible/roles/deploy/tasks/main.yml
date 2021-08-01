@@ -9,7 +9,7 @@
 - name: "copy backend code"
   become: yes
   copy:
-    src: ~/project/backend
+    src: ~/project/backend/
     dest: /home/ubuntu
 
 - name: "start backend job"
