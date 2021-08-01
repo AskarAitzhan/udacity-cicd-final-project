@@ -10,7 +10,7 @@
   become: yes
   copy:
     src: ~/project/backend
-    dest: ~/project
+    dest: /home/ubuntu
 
 - name: "start backend job"
   become: yes
