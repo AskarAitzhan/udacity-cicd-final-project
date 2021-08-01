@@ -14,4 +14,4 @@
 
 - name: "start backend job"
   become: yes
-  shell: npm run start
+  shell: npm run start:prod
