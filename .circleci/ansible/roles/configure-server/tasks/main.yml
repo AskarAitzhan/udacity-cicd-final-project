@@ -37,6 +37,14 @@
     production: yes
     state: present
 
+- name: "install ts-node"
+  become: yes
+  npm:
+    name: ts-node
+    global: yes
+    production: yes
+    state: present
+
 - name: "install typescript interpreter"
   become: yes
   shell: pm2 install typescript
