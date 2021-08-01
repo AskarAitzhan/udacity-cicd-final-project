@@ -34,10 +34,18 @@ commands:
           name: Revert migrations
           when: on_fail
           command: |
-            if ! $(command -v curl >/dev/null)
+            if $(command -v apt >/dev/null)
             then
-              sudo apt update
-              sudo apt install curl
+              if ! $(command -v curl >/dev/null)
+              then
+                sudo apt update
+                sudo apt install curl
+              fi
+            else
+              if ! $(command -v curl >/dev/null)
+              then
+                apk add curl
+              fi
             fi
             export SUCCESS=$(curl -H "token: b1cbdda4-c2dd-46e4-ae4e-91babf05fb00" \
               --request GET \
